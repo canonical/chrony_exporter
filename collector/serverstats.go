@@ -16,10 +16,10 @@ package collector
 import (
 	"fmt"
 
-	"github.com/facebook/time/ntp/chrony"
 	"github.com/go-kit/log"
 	"github.com/go-kit/log/level"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/superq/chrony_exporter/chrony"
 )
 
 const (
@@ -145,7 +145,7 @@ func (e Exporter) getServerstatsMetrics(logger log.Logger, ch chan<- prometheus.
 	}
 	level.Debug(logger).Log("msg", "Got 'serverstats' response", "serverstats_packet", packet.GetStatus())
 
-	serverstats, ok := packet.(*chrony.ReplyServerStats3)
+	serverstats, ok := packet.(*chrony.ReplyServerStats4)
 	if !ok {
 		return fmt.Errorf("got wrong 'serverstats' response: %q", packet)
 	}
