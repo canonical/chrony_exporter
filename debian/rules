@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --builddirectory=_build --buildsystem=golang
+
+execute_after_dh_auto_configure:
+	sed -i '/versioncollector/d' _build/src/github.com/superq/chrony_exporter/main.go
+	sed -i 's/github.com\/alecthomas\/kingpin\/v2/gopkg.in\/alecthomas\/kingpin.v2/g' _build/src/github.com/superq/chrony_exporter/main.go
+
+override_dh_auto_install:
+	dh_auto_install -- --no-source
+
+override_dh_installdeb:
+	dh_apparmor --profile-name=usr.bin.chrony_exporter
+	dh_installdeb

@@ -1,0 +1,5 @@
+prometheus-chrony-exporter (0.10.1-1) noble; urgency=medium
+
+  * Initial release
+
+ -- Weii Wang <weii.wang@canonical.com>  Tue, 30 Jul 2024 08:54:45 +0000
